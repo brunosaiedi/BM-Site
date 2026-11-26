@@ -335,6 +335,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .footer-contacts .icon { color: var(--gold); }
 .email { overflow-wrap: break-word; min-width: 0; }
 
+.footer-social { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
 .social-link {
   display: inline-flex; align-items: center; gap: 10px;
   min-height: 44px; padding: 8px 16px 8px 10px;
