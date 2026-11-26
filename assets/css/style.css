@@ -260,13 +260,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 .card h3 { font-size: 1.12rem; font-weight: 700; line-height: 1.25; margin: 0; }
 
 .card ul { display: grid; gap: 9px; }
-/* marcador centralizado sob o ícone (52px → centro em 26px); texto alinhado ao título (52px + 16px) */
 .card li {
-  position: relative; padding-left: 68px;
+  position: relative; padding-left: 22px;
   font-size: .94rem; line-height: 1.45; color: var(--muted);
 }
 .card li::before {
-  content: ""; position: absolute; left: 22px; top: .5em;
+  content: ""; position: absolute; left: 2px; top: .5em;
   width: 8px; height: 8px; border-radius: 2px;
   background: var(--sky);
 }
@@ -445,9 +444,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   .card-outsourcing { grid-column: auto; }
   .card-wide { grid-column: span 2; display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: center; padding: 30px 32px; }
   .card-wide > * { grid-column: auto; }
-  /* no cartão largo a lista fica em coluna própria, sem ícone acima */
-  .card-wide li { padding-left: 22px; }
-  .card-wide li::before { left: 2px; }
   .card-wide h3 { margin: 0; font-size: 1.25rem; }
   .card-wide ul { grid-template-columns: 1fr; }
 }
