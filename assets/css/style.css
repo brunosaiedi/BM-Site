@@ -272,10 +272,11 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .card-text { font-size: .96rem; line-height: 1.6; color: var(--muted); }
 
-.card-wide { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); border-color: transparent; }
-.card-wide h3 { color: var(--white); }
-.card-wide li { color: rgba(255, 255, 255, .86); }
-.card-wide .card-icon { background: var(--white); color: var(--navy); }
+/* cartões em destaque (azul-marinho): card-wide e card-dark */
+.card-wide, .card-dark { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%); border-color: transparent; }
+.card-wide h3, .card-dark h3 { color: var(--white); }
+.card-wide li, .card-dark li, .card-dark .card-text { color: rgba(255, 255, 255, .86); }
+.card-wide .card-icon, .card-dark .card-icon { background: var(--white); color: var(--navy); }
 .card-wide-head { display: flex; align-items: center; gap: 16px; }
 
 /* =========================================================
