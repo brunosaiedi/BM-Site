@@ -235,7 +235,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: 26px 22px 24px;
   box-shadow: var(--shadow-sm);
   transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s;
+  /* ícone à esquerda, título centralizado ao lado; conteúdo abaixo */
+  display: grid; grid-template-columns: 52px 1fr; column-gap: 16px; row-gap: 18px; align-content: start;
 }
+.card > * { grid-column: 1 / -1; }
+.card > .card-icon { grid-column: 1; align-self: center; }
+.card > h3 { grid-column: 2; align-self: center; }
 .card::before { /* filete superior discreto */
   content: ""; position: absolute; left: 22px; right: 22px; top: -1px; height: 3px;
   background: linear-gradient(90deg, var(--navy), var(--sky));
@@ -248,11 +253,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   width: 52px; height: 52px; border-radius: 14px;
   display: grid; place-items: center;
   background: var(--navy); color: var(--white);
-  margin-bottom: 18px;
+  flex: none;
   box-shadow: inset 0 -3px 0 rgba(242, 196, 94, .9);
 }
 .card-icon svg { width: 26px; height: 26px; }
-.card h3 { font-size: 1.12rem; font-weight: 700; margin-bottom: 14px; }
+.card h3 { font-size: 1.12rem; font-weight: 700; line-height: 1.25; margin: 0; }
 
 .card ul { display: grid; gap: 9px; }
 .card li {
@@ -271,7 +276,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .card-wide h3 { color: var(--white); }
 .card-wide li { color: rgba(255, 255, 255, .86); }
 .card-wide .card-icon { background: var(--white); color: var(--navy); }
-.card-wide-head { display: flex; flex-direction: column; }
+.card-wide-head { display: flex; align-items: center; gap: 16px; }
 
 /* =========================================================
    04 · Sobre
@@ -437,8 +442,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .cards { grid-template-columns: repeat(3, 1fr); gap: 24px; }
   .card { padding: 30px 26px 28px; }
   .card-outsourcing { grid-column: auto; }
-  .card-wide { grid-column: span 2; display: grid; grid-template-columns: 230px 1fr; gap: 28px; align-items: center; padding: 30px 32px; }
-  .card-wide-head .card-icon { margin-bottom: 16px; }
+  .card-wide { grid-column: span 2; display: grid; grid-template-columns: 300px 1fr; gap: 28px; align-items: center; padding: 30px 32px; }
+  .card-wide > * { grid-column: auto; }
   .card-wide h3 { margin: 0; font-size: 1.25rem; }
   .card-wide ul { grid-template-columns: 1fr; }
 }
