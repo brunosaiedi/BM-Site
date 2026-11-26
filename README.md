@@ -100,3 +100,4 @@ Domínio registrado: **bmservicosesolucoes.com.br**. O arquivo `CNAME`, o `canon
 - Textos e serviços: editar diretamente em `index.html` (cada seção está comentada).
 - Cores: variáveis no topo de `assets/css/style.css` (`--navy`, `--sky`, `--gold`, `--wa` …).
 - Testar sempre em celular (360–430 px), tablet (768 px) e desktop.
+- Cache: o GitHub Pages manda o navegador guardar os arquivos por 10 minutos. Para que mudanças de estilo apareçam logo, a publicação acrescenta automaticamente `?v=<código da versão>` aos links do `style.css` e do `main.js`. Não é preciso fazer nada manualmente.
