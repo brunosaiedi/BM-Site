@@ -89,4 +89,50 @@
   } else {
     document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('is-in'); });
   }
+
+  /* ---- Carrossel do Instagram (só roda se a seção estiver visível) ---- */
+  var igFeed = document.querySelector('.ig-feed');
+  if (igFeed && !igFeed.hidden) {
+    var igRoot = igFeed.querySelector('.ig-carousel');
+    var igTrack = igRoot.querySelector('.ig-track');
+    var igSlides = igRoot.querySelectorAll('.ig-slide');
+    var igDots = igRoot.querySelectorAll('.ig-dots button');
+    var igIndex = 0, igTimer = null, IG_DELAY = 4500;
+    var igReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // imagens declaradas em data-src passam a carregar
+    igRoot.querySelectorAll('img[data-src]').forEach(function (img) { img.src = img.getAttribute('data-src'); });
+
+    var igGo = function (k) {
+      igIndex = (k + igSlides.length) % igSlides.length;
+      igTrack.style.transform = 'translateX(' + (-100 * igIndex) + '%)';
+      igDots.forEach(function (d, j) { if (j === igIndex) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
+      igSlides.forEach(function (s, j) {
+        s.setAttribute('aria-hidden', String(j !== igIndex));
+        s.querySelectorAll('a').forEach(function (a) { a.tabIndex = j === igIndex ? 0 : -1; });
+      });
+    };
+    var igStop = function () { if (igTimer) clearInterval(igTimer); igTimer = null; };
+    var igPlay = function () { if (igReduce) return; igStop(); igTimer = setInterval(function () { igGo(igIndex + 1); }, IG_DELAY); };
+
+    igRoot.querySelector('.ig-prev').addEventListener('click', function () { igGo(igIndex - 1); igPlay(); });
+    igRoot.querySelector('.ig-next').addEventListener('click', function () { igGo(igIndex + 1); igPlay(); });
+    igDots.forEach(function (d, j) { d.addEventListener('click', function () { igGo(j); igPlay(); }); });
+    igRoot.addEventListener('mouseenter', igStop);
+    igRoot.addEventListener('mouseleave', igPlay);
+    igRoot.addEventListener('focusin', igStop);
+    igRoot.addEventListener('focusout', igPlay);
+    document.addEventListener('visibilitychange', function () { if (document.hidden) igStop(); else igPlay(); });
+
+    var igX0 = null;
+    igRoot.addEventListener('touchstart', function (e) { igX0 = e.touches[0].clientX; igStop(); }, { passive: true });
+    igRoot.addEventListener('touchend', function (e) {
+      if (igX0 === null) return;
+      var dx = e.changedTouches[0].clientX - igX0;
+      if (Math.abs(dx) > 40) igGo(igIndex + (dx < 0 ? 1 : -1));
+      igX0 = null; igPlay();
+    });
+
+    igGo(0); igPlay();
+  }
 })();

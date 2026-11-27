@@ -95,6 +95,22 @@ Domínio registrado: **bmservicosesolucoes.com.br**. O arquivo `CNAME`, o `canon
 5. Após a propagação do DNS (minutos a 24 h), marque **Enforce HTTPS** — o certificado é emitido gratuitamente pelo GitHub.
 6. Opcionalmente, cadastre o site no Google Search Console e envie `https://bmservicosesolucoes.com.br/sitemap.xml`.
 
+## Carrossel do Instagram (atualização manual)
+
+Logo abaixo do cabeçalho há um carrossel com 3 postagens do Instagram (`<section class="ig-feed">` no `index.html`). As postagens são atualizadas manualmente, sem ligação com a conta.
+
+Para atualizar:
+
+1. Salve as imagens em `assets/img/instagram/` como `post-1.jpg` (mais recente), `post-2.jpg` e `post-3.jpg`, quadradas, com cerca de 1080×1080 px.
+2. Em cada `<li class="ig-slide">`:
+   - troque `data-src="…"` por `src="…"` na imagem (ou mantenha `data-src`; o script carrega automaticamente);
+   - preencha o `alt` com uma descrição curta da imagem;
+   - coloque a legenda no `<p class="ig-caption">` (legendas longas são cortadas com "…" após 5 a 6 linhas);
+   - troque o `href` do botão "Ver no Instagram" pelo link da postagem (Instagram → ⋯ → Copiar link).
+3. Na primeira vez, remova o atributo `hidden` da `<section class="ig-feed" …>` para exibir o carrossel.
+
+O carrossel troca de postagem a cada 4,5 s, para quando o mouse está em cima, aceita deslizar no celular e respeita a opção "reduzir movimento" do sistema.
+
 ## Manutenção
 
 - Textos e serviços: editar diretamente em `index.html` (cada seção está comentada).
