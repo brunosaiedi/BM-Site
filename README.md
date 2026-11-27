@@ -105,7 +105,7 @@ Para atualizar:
 2. Em cada `<li class="ig-slide">`:
    - troque `data-src="…"` por `src="…"` na imagem (ou mantenha `data-src`; o script carrega automaticamente);
    - preencha o `alt` com uma descrição curta da imagem;
-   - coloque a legenda no `<p class="ig-caption">` em um único parágrafo, com ponto final nas frases (legendas longas são cortadas com "…" após 5 a 6 linhas);
+   - coloque a legenda no `<p class="ig-caption">` com o título (primeira frase) sozinho na primeira linha, seguido de `<br>`, e o restante em um único parágrafo, com ponto final nas frases (legendas longas são cortadas com "…" após 5 a 6 linhas);
    - troque o `href` do botão "Ver no Instagram" pelo link da postagem (Instagram → ⋯ → Copiar link).
 3. Na primeira vez, remova o atributo `hidden` da `<section class="ig-feed" …>` para exibir o carrossel.
 
