@@ -477,7 +477,6 @@ ul { margin: 0; padding: 0; list-style: none; }
 .ig-caption {
   color: var(--ink); font-size: 1rem; line-height: 1.6;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; line-clamp: 5; overflow: hidden;
-  white-space: pre-line;
 }
 .ig-btn { background: var(--navy); color: var(--white); margin-top: 4px; }
 .ig-btn:hover { background: var(--navy-2); transform: translateY(-2px); }
@@ -493,9 +492,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 .ig-prev { left: 10px; }
 .ig-next { right: 10px; }
 
-.ig-dots { position: absolute; left: 0; right: 0; bottom: 18px; z-index: 2; display: flex; justify-content: center; gap: 8px; }
+.ig-controls { position: absolute; left: 0; right: 0; bottom: 12px; z-index: 2; display: flex; align-items: center; justify-content: center; gap: 14px; }
+.ig-dots { display: flex; align-items: center; gap: 8px; }
 .ig-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: #B9C8DD; cursor: pointer; transition: width .3s, background .3s; }
 .ig-dots button[aria-current="true"] { width: 26px; background: var(--navy); }
+.ig-pause {
+  width: 30px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 50%;
+  background: var(--white); color: var(--navy); cursor: pointer;
+  display: grid; place-items: center; transition: background .2s, color .2s, border-color .2s;
+}
+.ig-pause:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.ig-pause svg { width: 14px; height: 14px; }
+.ig-pause .ig-ico-play { display: none; }
+.ig-pause[aria-pressed="true"] .ig-ico-pause { display: none; }
+.ig-pause[aria-pressed="true"] .ig-ico-play { display: block; }
 
 @media (min-width: 600px) {
   .ig-nav { top: calc((100vw - 56px) / 2); }
@@ -503,9 +513,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 @media (min-width: 768px) {
   .ig-feed { padding: 32px 0 36px; }
   .ig-slide { grid-template-columns: minmax(0, 340px) 1fr; align-items: center; }
-  .ig-body { padding: 28px 36px 28px 40px; }
+  .ig-body { padding: 28px 36px 64px 40px; }
   .ig-caption { font-size: 1.1rem; -webkit-line-clamp: 6; line-clamp: 6; }
   .ig-nav { top: 50%; }
-  .ig-dots { left: 340px; justify-content: flex-start; padding-left: 40px; bottom: 22px; }
+  .ig-controls { left: 340px; justify-content: flex-start; padding-left: 40px; bottom: 16px; }
 }
 @media (prefers-reduced-motion: reduce) { .ig-track { transition: none; } }

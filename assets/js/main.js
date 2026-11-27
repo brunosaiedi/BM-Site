@@ -99,6 +99,8 @@
     var igDots = igRoot.querySelectorAll('.ig-dots button');
     var igIndex = 0, igTimer = null, IG_DELAY = 4500;
     var igReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var igPauseBtn = igRoot.querySelector('.ig-pause');
+    var igPaused = igReduce; // quem pede menos movimento começa com o carrossel parado
 
     // imagens declaradas em data-src passam a carregar
     igRoot.querySelectorAll('img[data-src]').forEach(function (img) { img.src = img.getAttribute('data-src'); });
@@ -113,7 +115,16 @@
       });
     };
     var igStop = function () { if (igTimer) clearInterval(igTimer); igTimer = null; };
-    var igPlay = function () { if (igReduce) return; igStop(); igTimer = setInterval(function () { igGo(igIndex + 1); }, IG_DELAY); };
+    var igPlay = function () { igStop(); if (igPaused) return; igTimer = setInterval(function () { igGo(igIndex + 1); }, IG_DELAY); };
+    var igSetPaused = function (p) {
+      igPaused = p;
+      if (igPauseBtn) {
+        igPauseBtn.setAttribute('aria-pressed', String(p));
+        igPauseBtn.setAttribute('aria-label', p ? 'Retomar carrossel' : 'Pausar carrossel');
+      }
+      if (p) igStop(); else igPlay();
+    };
+    if (igPauseBtn) igPauseBtn.addEventListener('click', function () { igSetPaused(!igPaused); });
 
     igRoot.querySelector('.ig-prev').addEventListener('click', function () { igGo(igIndex - 1); igPlay(); });
     igRoot.querySelector('.ig-next').addEventListener('click', function () { igGo(igIndex + 1); igPlay(); });
@@ -133,6 +144,8 @@
       igX0 = null; igPlay();
     });
 
-    igGo(0); igPlay();
+    igGo(0);
+    if (igPauseBtn && igPaused) { igPauseBtn.setAttribute('aria-pressed', 'true'); igPauseBtn.setAttribute('aria-label', 'Retomar carrossel'); }
+    igPlay();
   }
 })();
