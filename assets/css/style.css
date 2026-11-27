@@ -114,12 +114,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
-.brand-logo { height: 38px; width: auto; flex: none; }
+.brand-logo { height: 42px; width: auto; flex: none; }
 .brand-text { display: flex; flex-direction: column; line-height: 1.15; min-width: 0; }
 .brand-text strong {
   font-family: var(--font-head); font-weight: 800; font-size: .78rem; letter-spacing: .03em;
-  white-space: nowrap;
+  /* em celulares estreitos o nome quebra em duas linhas para dar espaço à logo maior */
+  white-space: normal; overflow-wrap: normal;
 }
+@media (min-width: 600px) { .brand-text strong { white-space: nowrap; } }
 .brand-text small {
   font-family: var(--font-head); font-weight: 600; font-size: .62rem; letter-spacing: .2em;
   color: var(--sky); margin-top: 3px;
@@ -377,12 +379,14 @@ ul { margin: 0; padding: 0; list-style: none; }
    Breakpoints
    ========================================================= */
 @media (min-width: 400px) {
-  .brand-logo { height: 42px; }
+  .brand-logo { height: 48px; }
   .brand-text strong { font-size: .88rem; }
   .brand-text small { font-size: .66rem; }
 }
 
 @media (min-width: 600px) {
+  :root { --header-h: 80px; }
+  .brand-logo { height: 58px; }
   .container { padding-inline: 28px; }
   .hero-actions { flex-direction: row; flex-wrap: wrap; }
   .hero-actions .btn, .cta .btn { width: auto; }
@@ -407,9 +411,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* Desktop: menu horizontal */
 @media (min-width: 960px) {
-  :root { --header-h: 80px; }
-  .brand-logo { height: 52px; }
-  .brand-text strong { font-size: 1rem; }
+  :root { --header-h: 100px; }
+  .brand-logo { height: 80px; }
+  .brand { gap: 16px; }
+  .brand-text strong { font-size: 1.08rem; }
   .nav-toggle { display: none; }
   .nav {
     position: static; display: flex; align-items: center; gap: 28px;
